@@ -108,7 +108,7 @@ public class item_catagery extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Item category Type");
+        jLabel3.setText("Item category Type (*)");
 
         txt_cat_type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +116,7 @@ public class item_catagery extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Item category description");
+        jLabel4.setText("Item category description (*)");
 
         txt_discription.setColumns(20);
         txt_discription.setRows(5);
@@ -163,7 +163,7 @@ public class item_catagery extends javax.swing.JDialog {
                         .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_cat_type, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                             .addComponent(txt_cat_id))))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         tb_add_catageryLayout.setVerticalGroup(
             tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,14 +229,18 @@ public class item_catagery extends javax.swing.JDialog {
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         // TODO add your handling code here:
 
-        if (txt_cat_type.getText() != null && txt_discription.getText() != null) {
+        if (txt_cat_type.getText().equals("") || txt_discription.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill all the fields");
+        } else {
+
+            System.out.println(txt_cat_type.getText() + "" + txt_discription.getText());
             add_item_category_model add = new add_item_category_model();
             add.setId(txt_cat_id.getText());
             add.setType(txt_cat_type.getText());
             add.setDescription(txt_discription.getText());
             Item_category_controler.addItemCategory(add);
-        } else {
-            JOptionPane.showMessageDialog(null, "Please fill all the fields");
+            this.dispose();
+            new item_catagery(null, true).setVisible(true);
         }
 
     }//GEN-LAST:event_btn_addActionPerformed
