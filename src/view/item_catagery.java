@@ -5,7 +5,12 @@
 package view;
 
 import controler.Item_category_controler;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.add_item_category_model;
 import validation.AutoGenerate;
 
@@ -18,6 +23,8 @@ public class item_catagery extends javax.swing.JDialog {
     /**
      * Creates new form item_catagery
      */
+    DefaultTableModel dtm_serch;
+
     public item_catagery(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -26,6 +33,7 @@ public class item_catagery extends javax.swing.JDialog {
 
         String id = AutoGenerate.getNextID("item_catagery", "cat_id", "CA");
         txt_cat_id.setText(id);
+        dtm_serch = (DefaultTableModel) tbl_search.getModel();
     }
 
     /**
@@ -41,6 +49,15 @@ public class item_catagery extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         tb_search_catagery = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txt_search_type = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txt_serch_id = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_search = new javax.swing.JTable();
+        btn_serch_reset = new javax.swing.JButton();
+        btn_serch_home = new javax.swing.JButton();
         tb_update_catag = new javax.swing.JPanel();
         tb_delete_category = new javax.swing.JPanel();
         tb_add_catagery = new javax.swing.JPanel();
@@ -54,21 +71,104 @@ public class item_catagery extends javax.swing.JDialog {
         btn_add = new javax.swing.JButton();
         btn_reset = new javax.swing.JButton();
         btn_home = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 25)); // NOI18N
         jLabel1.setText("Sakura Distributers");
 
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 25)); // NOI18N
+        jLabel6.setText("Search item category");
+
+        jLabel7.setText("Search by type");
+
+        txt_search_type.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_search_typeKeyPressed(evt);
+            }
+        });
+
+        jLabel8.setText("Search by id");
+
+        txt_serch_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_serch_idKeyReleased(evt);
+            }
+        });
+
+        tbl_search.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Category ID", "Category Type", "Category Discription"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbl_search);
+
+        btn_serch_reset.setText("reset");
+
+        btn_serch_home.setText("Home");
+
         javax.swing.GroupLayout tb_search_catageryLayout = new javax.swing.GroupLayout(tb_search_catagery);
         tb_search_catagery.setLayout(tb_search_catageryLayout);
         tb_search_catageryLayout.setHorizontalGroup(
             tb_search_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(tb_search_catageryLayout.createSequentialGroup()
+                .addGroup(tb_search_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_search_catageryLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_search_catageryLayout.createSequentialGroup()
+                        .addGap(282, 282, 282)
+                        .addComponent(jLabel6)
+                        .addGap(0, 288, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_search_catageryLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_search_type, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_serch_id))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_search_catageryLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_serch_home)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_serch_reset)))
+                .addContainerGap())
         );
         tb_search_catageryLayout.setVerticalGroup(
             tb_search_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGroup(tb_search_catageryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(tb_search_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txt_search_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_serch_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(tb_search_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_serch_reset)
+                    .addComponent(btn_serch_home))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Search item category", tb_search_catagery);
@@ -81,7 +181,7 @@ public class item_catagery extends javax.swing.JDialog {
         );
         tb_update_catagLayout.setVerticalGroup(
             tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGap(0, 533, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Update item category", tb_update_catag);
@@ -94,7 +194,7 @@ public class item_catagery extends javax.swing.JDialog {
         );
         tb_delete_categoryLayout.setVerticalGroup(
             tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGap(0, 533, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Delete item category", tb_delete_category);
@@ -138,37 +238,47 @@ public class item_catagery extends javax.swing.JDialog {
 
         btn_home.setText("home");
 
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 25)); // NOI18N
+        jLabel5.setText("Add item category");
+
         javax.swing.GroupLayout tb_add_catageryLayout = new javax.swing.GroupLayout(tb_add_catagery);
         tb_add_catagery.setLayout(tb_add_catageryLayout);
         tb_add_catageryLayout.setHorizontalGroup(
             tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tb_add_catageryLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tb_add_catageryLayout.createSequentialGroup()
-                        .addComponent(btn_home)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_reset)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(113, 113, 113)
+                        .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(tb_add_catageryLayout.createSequentialGroup()
+                                .addComponent(btn_home)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_reset)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tb_add_catageryLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tb_add_catageryLayout.createSequentialGroup()
+                                .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(46, 46, 46)
+                                .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_cat_type, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                                    .addComponent(txt_cat_id)))))
                     .addGroup(tb_add_catageryLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(tb_add_catageryLayout.createSequentialGroup()
-                        .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(46, 46, 46)
-                        .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_cat_type, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-                            .addComponent(txt_cat_id))))
+                        .addGap(291, 291, 291)
+                        .addComponent(jLabel5)))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
         tb_add_catageryLayout.setVerticalGroup(
             tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tb_add_catageryLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_cat_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,7 +295,7 @@ public class item_catagery extends javax.swing.JDialog {
                     .addComponent(btn_add)
                     .addComponent(btn_reset)
                     .addComponent(btn_home))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Add item category", tb_add_catagery);
@@ -247,7 +357,7 @@ public class item_catagery extends javax.swing.JDialog {
 
     private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
         // TODO add your handling code here:
-        txt_cat_id.setText(null);
+
         txt_cat_type.setText(null);
         txt_discription.setText(null);
     }//GEN-LAST:event_btn_resetActionPerformed
@@ -255,6 +365,62 @@ public class item_catagery extends javax.swing.JDialog {
     private void txt_cat_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cat_typeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_cat_typeActionPerformed
+
+    private void txt_search_typeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_search_typeKeyPressed
+        // TODO add your handling code here:
+        fillTableType();
+    }//GEN-LAST:event_txt_search_typeKeyPressed
+
+    private void txt_serch_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_serch_idKeyReleased
+        // TODO add your handling code here:
+        fillTableID();
+    }//GEN-LAST:event_txt_serch_idKeyReleased
+
+    private void fillTableType() {
+        try {
+            int rawCount = dtm_serch.getRowCount();
+            for (int i = 0; i < rawCount; i++) {
+                dtm_serch.removeRow(0);
+            }
+            ArrayList<add_item_category_model> ar = Item_category_controler.getItemCatageryByType(txt_search_type.getText());
+            for (int i = 0; i < ar.size(); i++) {
+                add_item_category_model it = ar.get(i);
+                String[] rowData = {it.getId(), it.getType(), it.getDescription()};
+                dtm_serch.addRow(rowData);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
+    
+    private void fillTableID() {
+        try {
+            int rawCount = dtm_serch.getRowCount();
+            for (int i = 0; i < rawCount; i++) {
+                dtm_serch.removeRow(0);
+            }
+            ArrayList<add_item_category_model> ar = Item_category_controler.getItemCatageryByID(txt_search_type.getText());
+            for (int i = 0; i < ar.size(); i++) {
+                add_item_category_model it = ar.get(i);
+                String[] rowData = {it.getId(), it.getType(), it.getDescription()};
+                dtm_serch.addRow(rowData);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
 
     /**
      * @param args the command line arguments
@@ -301,19 +467,29 @@ public class item_catagery extends javax.swing.JDialog {
     private javax.swing.JButton btn_add;
     private javax.swing.JButton btn_home;
     private javax.swing.JButton btn_reset;
+    private javax.swing.JButton btn_serch_home;
+    private javax.swing.JButton btn_serch_reset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel tb_add_catagery;
     private javax.swing.JPanel tb_delete_category;
     private javax.swing.JPanel tb_search_catagery;
     private javax.swing.JPanel tb_update_catag;
+    private javax.swing.JTable tbl_search;
     private javax.swing.JTextField txt_cat_id;
     private javax.swing.JTextField txt_cat_type;
     private javax.swing.JTextArea txt_discription;
+    private javax.swing.JTextField txt_search_type;
+    private javax.swing.JTextField txt_serch_id;
     // End of variables declaration//GEN-END:variables
 }
