@@ -24,6 +24,7 @@ public class item_catagery extends javax.swing.JDialog {
      * Creates new form item_catagery
      */
     DefaultTableModel dtm_serch;
+    DefaultTableModel dtm_update;
 
     public item_catagery(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -34,6 +35,7 @@ public class item_catagery extends javax.swing.JDialog {
         String id = AutoGenerate.getNextID("item_catagery", "cat_id", "CA");
         txt_cat_id.setText(id);
         dtm_serch = (DefaultTableModel) tbl_search.getModel();
+        dtm_update = (DefaultTableModel) tbl_update.getModel();
     }
 
     /**
@@ -59,6 +61,23 @@ public class item_catagery extends javax.swing.JDialog {
         btn_serch_reset = new javax.swing.JButton();
         btn_serch_home = new javax.swing.JButton();
         tb_update_catag = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txt_update_serch_type = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txt_update_serch_id = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbl_update = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        txt_update_cat_type = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txt_update_cat_discription = new javax.swing.JTextArea();
+        btn_update = new javax.swing.JButton();
+        btn_update_clear = new javax.swing.JButton();
+        btn_update_home = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        txt_update_cat_id = new javax.swing.JTextField();
         tb_delete_category = new javax.swing.JPanel();
         tb_add_catagery = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -102,6 +121,17 @@ public class item_catagery extends javax.swing.JDialog {
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null}
             },
             new String [] {
@@ -134,7 +164,7 @@ public class item_catagery extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_search_catageryLayout.createSequentialGroup()
                         .addGap(282, 282, 282)
                         .addComponent(jLabel6)
-                        .addGap(0, 288, Short.MAX_VALUE))
+                        .addGap(0, 294, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_search_catageryLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7)
@@ -173,15 +203,153 @@ public class item_catagery extends javax.swing.JDialog {
 
         jTabbedPane2.addTab("Search item category", tb_search_catagery);
 
+        jLabel9.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 25)); // NOI18N
+        jLabel9.setText("Update item category");
+
+        jLabel10.setText("Search by type");
+
+        txt_update_serch_type.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_update_serch_typeKeyReleased(evt);
+            }
+        });
+
+        jLabel11.setText("Search by ID");
+
+        txt_update_serch_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_update_serch_idKeyReleased(evt);
+            }
+        });
+
+        tbl_update.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Category ID", "Category Type", "Category Description"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_updateMouseReleased(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tbl_update);
+
+        jLabel12.setText("Category Type");
+
+        jLabel13.setText("Category Description");
+
+        txt_update_cat_discription.setColumns(20);
+        txt_update_cat_discription.setRows(5);
+        jScrollPane4.setViewportView(txt_update_cat_discription);
+
+        btn_update.setText("update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_update_clear.setText("clear");
+        btn_update_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_update_clearActionPerformed(evt);
+            }
+        });
+
+        btn_update_home.setText("home");
+
+        jLabel14.setText("Category ID");
+
+        txt_update_cat_id.setEnabled(false);
+
         javax.swing.GroupLayout tb_update_catagLayout = new javax.swing.GroupLayout(tb_update_catag);
         tb_update_catag.setLayout(tb_update_catagLayout);
         tb_update_catagLayout.setHorizontalGroup(
             tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(tb_update_catagLayout.createSequentialGroup()
+                .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tb_update_catagLayout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(tb_update_catagLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tb_update_catagLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_update_serch_type, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_update_serch_id))
+                            .addComponent(jScrollPane3)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_update_catagLayout.createSequentialGroup()
+                        .addGap(0, 574, Short.MAX_VALUE)
+                        .addComponent(btn_update_home)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_update_clear)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_update))
+                    .addGroup(tb_update_catagLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14))
+                        .addGap(28, 28, 28)
+                        .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_update_cat_type)
+                            .addComponent(jScrollPane4)
+                            .addComponent(txt_update_cat_id))))
+                .addContainerGap())
         );
         tb_update_catagLayout.setVerticalGroup(
             tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGroup(tb_update_catagLayout.createSequentialGroup()
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txt_update_serch_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(txt_update_serch_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(txt_update_cat_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txt_update_cat_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tb_update_catagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_update)
+                    .addComponent(btn_update_clear)
+                    .addComponent(btn_update_home))
+                .addGap(0, 41, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Update item category", tb_update_catag);
@@ -190,7 +358,7 @@ public class item_catagery extends javax.swing.JDialog {
         tb_delete_category.setLayout(tb_delete_categoryLayout);
         tb_delete_categoryLayout.setHorizontalGroup(
             tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 801, Short.MAX_VALUE)
         );
         tb_delete_categoryLayout.setVerticalGroup(
             tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,7 +439,7 @@ public class item_catagery extends javax.swing.JDialog {
                     .addGroup(tb_add_catageryLayout.createSequentialGroup()
                         .addGap(291, 291, 291)
                         .addComponent(jLabel5)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         tb_add_catageryLayout.setVerticalGroup(
             tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,6 +544,51 @@ public class item_catagery extends javax.swing.JDialog {
         fillTableID();
     }//GEN-LAST:event_txt_serch_idKeyReleased
 
+    private void txt_update_serch_typeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_update_serch_typeKeyReleased
+        // TODO add your handling code here:
+        fillTableTypeUpdate();
+    }//GEN-LAST:event_txt_update_serch_typeKeyReleased
+
+    private void txt_update_serch_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_update_serch_idKeyReleased
+        // TODO add your handling code here:
+        fillTableIDUpdate();
+    }//GEN-LAST:event_txt_update_serch_idKeyReleased
+
+    private void tbl_updateMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_updateMouseReleased
+        // TODO add your handling code here:
+        int row = tbl_update.getSelectedRow();
+        txt_update_cat_id.setText(dtm_update.getValueAt(row, 0) + "");
+        txt_update_cat_type.setText(dtm_update.getValueAt(row, 1) + "");
+        txt_update_cat_discription.setText(dtm_update.getValueAt(row, 2) + "");
+    }//GEN-LAST:event_tbl_updateMouseReleased
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+        if (txt_update_cat_type.getText().equals("") || txt_update_cat_discription.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill all the fields");
+        } else {
+            add_item_category_model add = new add_item_category_model();
+            add.setId(txt_update_cat_id.getText());
+            add.setType(txt_update_cat_type.getText());
+            add.setDescription(txt_update_cat_discription.getText());
+            try {
+                Item_category_controler.updateItemCategory(add);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_update_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_update_clearActionPerformed
+        // TODO add your handling code here:
+        txt_update_cat_id.setText(null);
+        txt_update_cat_type.setText(null);
+        txt_update_cat_discription.setText(null);
+    }//GEN-LAST:event_btn_update_clearActionPerformed
+//Search
+
     private void fillTableType() {
         try {
             int rawCount = dtm_serch.getRowCount();
@@ -398,7 +611,7 @@ public class item_catagery extends javax.swing.JDialog {
 
 
     }
-    
+
     private void fillTableID() {
         try {
             int rawCount = dtm_serch.getRowCount();
@@ -410,6 +623,53 @@ public class item_catagery extends javax.swing.JDialog {
                 add_item_category_model it = ar.get(i);
                 String[] rowData = {it.getId(), it.getType(), it.getDescription()};
                 dtm_serch.addRow(rowData);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
+//Update 
+
+    private void fillTableTypeUpdate() {
+        try {
+            int rawCount = dtm_update.getRowCount();
+            for (int i = 0; i < rawCount; i++) {
+                dtm_update.removeRow(0);
+            }
+            ArrayList<add_item_category_model> ar = Item_category_controler.getItemCatageryByType(txt_update_serch_type.getText());
+            for (int i = 0; i < ar.size(); i++) {
+                add_item_category_model it = ar.get(i);
+                String[] rowData = {it.getId(), it.getType(), it.getDescription()};
+                dtm_update.addRow(rowData);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
+
+    private void fillTableIDUpdate() {
+        try {
+            int rawCount = dtm_update.getRowCount();
+            for (int i = 0; i < rawCount; i++) {
+                dtm_update.removeRow(0);
+            }
+            ArrayList<add_item_category_model> ar = Item_category_controler.getItemCatageryByID(txt_update_serch_id.getText());
+            for (int i = 0; i < ar.size(); i++) {
+                add_item_category_model it = ar.get(i);
+                String[] rowData = {it.getId(), it.getType(), it.getDescription()};
+                dtm_update.addRow(rowData);
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
@@ -469,7 +729,15 @@ public class item_catagery extends javax.swing.JDialog {
     private javax.swing.JButton btn_reset;
     private javax.swing.JButton btn_serch_home;
     private javax.swing.JButton btn_serch_reset;
+    private javax.swing.JButton btn_update;
+    private javax.swing.JButton btn_update_clear;
+    private javax.swing.JButton btn_update_home;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -477,19 +745,28 @@ public class item_catagery extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel tb_add_catagery;
     private javax.swing.JPanel tb_delete_category;
     private javax.swing.JPanel tb_search_catagery;
     private javax.swing.JPanel tb_update_catag;
     private javax.swing.JTable tbl_search;
+    private javax.swing.JTable tbl_update;
     private javax.swing.JTextField txt_cat_id;
     private javax.swing.JTextField txt_cat_type;
     private javax.swing.JTextArea txt_discription;
     private javax.swing.JTextField txt_search_type;
     private javax.swing.JTextField txt_serch_id;
+    private javax.swing.JTextArea txt_update_cat_discription;
+    private javax.swing.JTextField txt_update_cat_id;
+    private javax.swing.JTextField txt_update_cat_type;
+    private javax.swing.JTextField txt_update_serch_id;
+    private javax.swing.JTextField txt_update_serch_type;
     // End of variables declaration//GEN-END:variables
 }

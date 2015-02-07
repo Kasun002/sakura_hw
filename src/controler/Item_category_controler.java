@@ -67,4 +67,22 @@ public class Item_category_controler {
         }
         return ar;
     }
+    
+    
+    public static void updateItemCategory(add_item_category_model i) throws ClassNotFoundException, SQLException{
+
+        try {
+            Connection con = DBConnection.getConnection();
+            String qry = "UPDATE item_catagery set type='" + i.getType() + "',description='" + i.getDescription()+"' where cat_id='" + i.getId() + "'";
+            int res = DBHandel.setData(con, qry);
+            if (res != 0) {
+                JOptionPane.showMessageDialog(null, "Update Category OK");
+            } else {
+                JOptionPane.showMessageDialog(null, "Update Error");
+            }
+        } catch (Exception e) {
+          
+            System.out.println(e);
+        }
+    }
 }
