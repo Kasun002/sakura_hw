@@ -5,6 +5,7 @@
 package view;
 
 import controler.Item_category_controler;
+import javax.swing.JOptionPane;
 import model.add_item_category_model;
 import validation.AutoGenerate;
 
@@ -22,8 +23,8 @@ public class item_catagery extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
-        String id= AutoGenerate.getNextID("item_catagery", "cat_id", "CA");
+
+        String id = AutoGenerate.getNextID("item_catagery", "cat_id", "CA");
         txt_cat_id.setText(id);
     }
 
@@ -109,6 +110,12 @@ public class item_catagery extends javax.swing.JDialog {
 
         jLabel3.setText("Item category Type");
 
+        txt_cat_type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cat_typeActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Item category description");
 
         txt_discription.setColumns(20);
@@ -123,6 +130,11 @@ public class item_catagery extends javax.swing.JDialog {
         });
 
         btn_reset.setText("clear");
+        btn_reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_resetActionPerformed(evt);
+            }
+        });
 
         btn_home.setText("home");
 
@@ -216,13 +228,29 @@ public class item_catagery extends javax.swing.JDialog {
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         // TODO add your handling code here:
-        add_item_category_model add=new add_item_category_model();
-        add.setId(txt_cat_id.getText());
-        add.setType(txt_cat_type.getText());
-        add.setDescription(txt_discription.getText());
-        Item_category_controler.addItemCategory(add);
-        
+
+        if (txt_cat_type.getText() != null && txt_discription.getText() != null) {
+            add_item_category_model add = new add_item_category_model();
+            add.setId(txt_cat_id.getText());
+            add.setType(txt_cat_type.getText());
+            add.setDescription(txt_discription.getText());
+            Item_category_controler.addItemCategory(add);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please fill all the fields");
+        }
+
     }//GEN-LAST:event_btn_addActionPerformed
+
+    private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
+        // TODO add your handling code here:
+        txt_cat_id.setText(null);
+        txt_cat_type.setText(null);
+        txt_discription.setText(null);
+    }//GEN-LAST:event_btn_resetActionPerformed
+
+    private void txt_cat_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cat_typeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cat_typeActionPerformed
 
     /**
      * @param args the command line arguments

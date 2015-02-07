@@ -227,6 +227,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_cat_type">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_cat_typeActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
@@ -260,6 +263,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="clear"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_resetActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_home">
                   <Properties>
