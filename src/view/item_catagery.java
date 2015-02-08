@@ -25,6 +25,7 @@ public class item_catagery extends javax.swing.JDialog {
      */
     DefaultTableModel dtm_serch;
     DefaultTableModel dtm_update;
+    DefaultTableModel dtm_delete1;
 
     public item_catagery(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -36,6 +37,7 @@ public class item_catagery extends javax.swing.JDialog {
         txt_cat_id.setText(id);
         dtm_serch = (DefaultTableModel) tbl_search.getModel();
         dtm_update = (DefaultTableModel) tbl_update.getModel();
+        dtm_delete1 = (DefaultTableModel) tbl_delete1.getModel();
     }
 
     /**
@@ -47,8 +49,9 @@ public class item_catagery extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tbl_delete = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         tb_search_catagery = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -79,6 +82,23 @@ public class item_catagery extends javax.swing.JDialog {
         jLabel14 = new javax.swing.JLabel();
         txt_update_cat_id = new javax.swing.JTextField();
         tb_delete_category = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txt_delete_type = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txt_delete_id = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tbl_delete1 = new javax.swing.JTable();
+        jLabel18 = new javax.swing.JLabel();
+        txt_delete_cat_id = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        txt_delete_cat_type = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        txt_delete_cat_discription = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         tb_add_catagery = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_cat_id = new javax.swing.JTextField();
@@ -91,11 +111,36 @@ public class item_catagery extends javax.swing.JDialog {
         btn_reset = new javax.swing.JButton();
         btn_home = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+
+        tbl_delete.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Category ID", "Category Type", "Category Description"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tbl_delete);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 25)); // NOI18N
-        jLabel1.setText("Sakura Distributers");
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 25)); // NOI18N
         jLabel6.setText("Search item category");
@@ -164,7 +209,7 @@ public class item_catagery extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_search_catageryLayout.createSequentialGroup()
                         .addGap(282, 282, 282)
                         .addComponent(jLabel6)
-                        .addGap(0, 294, Short.MAX_VALUE))
+                        .addGap(0, 298, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_search_catageryLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7)
@@ -301,7 +346,7 @@ public class item_catagery extends javax.swing.JDialog {
                                 .addComponent(txt_update_serch_id))
                             .addComponent(jScrollPane3)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_update_catagLayout.createSequentialGroup()
-                        .addGap(0, 574, Short.MAX_VALUE)
+                        .addGap(0, 578, Short.MAX_VALUE)
                         .addComponent(btn_update_home)
                         .addGap(18, 18, 18)
                         .addComponent(btn_update_clear)
@@ -354,15 +399,164 @@ public class item_catagery extends javax.swing.JDialog {
 
         jTabbedPane2.addTab("Update item category", tb_update_catag);
 
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 25)); // NOI18N
+        jLabel1.setText("Delete item category");
+
+        jLabel16.setText("Search by type");
+
+        txt_delete_type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_delete_typeActionPerformed(evt);
+            }
+        });
+        txt_delete_type.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_delete_typeKeyReleased(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_delete_typeKeyPressed(evt);
+            }
+        });
+
+        jLabel17.setText("Search by id");
+
+        txt_delete_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_delete_idKeyReleased(evt);
+            }
+        });
+
+        tbl_delete1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Catagery ID", "Catagery Type", "Category Description "
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_delete1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_delete1MouseReleased(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tbl_delete1);
+
+        jLabel18.setText("Category ID");
+
+        txt_delete_cat_id.setEditable(false);
+
+        jLabel19.setText("Category Type");
+
+        txt_delete_cat_type.setEditable(false);
+
+        jLabel20.setText("Category Description ");
+
+        txt_delete_cat_discription.setEditable(false);
+        txt_delete_cat_discription.setColumns(20);
+        txt_delete_cat_discription.setRows(5);
+        jScrollPane7.setViewportView(txt_delete_cat_discription);
+
+        jButton1.setText("delete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Home");
+
         javax.swing.GroupLayout tb_delete_categoryLayout = new javax.swing.GroupLayout(tb_delete_category);
         tb_delete_category.setLayout(tb_delete_categoryLayout);
         tb_delete_categoryLayout.setHorizontalGroup(
             tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+            .addGroup(tb_delete_categoryLayout.createSequentialGroup()
+                .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tb_delete_categoryLayout.createSequentialGroup()
+                        .addGap(282, 282, 282)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(tb_delete_categoryLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tb_delete_categoryLayout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_delete_type, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel17)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_delete_id, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                            .addComponent(jScrollPane6)
+                            .addGroup(tb_delete_categoryLayout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_delete_cat_id, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_delete_categoryLayout.createSequentialGroup()
+                                .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel20))
+                                .addGap(67, 67, 67)
+                                .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_delete_cat_type)
+                                    .addComponent(jScrollPane7)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tb_delete_categoryLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
+                .addContainerGap())
         );
         tb_delete_categoryLayout.setVerticalGroup(
             tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGroup(tb_delete_categoryLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_delete_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel17)
+                        .addComponent(txt_delete_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(txt_delete_cat_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(txt_delete_cat_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tb_delete_categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Delete item category", tb_delete_category);
@@ -439,7 +633,7 @@ public class item_catagery extends javax.swing.JDialog {
                     .addGroup(tb_add_catageryLayout.createSequentialGroup()
                         .addGap(291, 291, 291)
                         .addComponent(jLabel5)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         tb_add_catageryLayout.setVerticalGroup(
             tb_add_catageryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,22 +662,30 @@ public class item_catagery extends javax.swing.JDialog {
 
         jTabbedPane2.addTab("Add item category", tb_add_catagery);
 
+        jLabel15.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 25)); // NOI18N
+        jLabel15.setText("Sakura Distributers");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(283, 283, 283)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jTabbedPane2)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(293, 293, 293)
+                    .addComponent(jLabel15)
+                    .addContainerGap(310, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addComponent(jTabbedPane2))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(jLabel15)
+                    .addContainerGap(569, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -587,6 +789,54 @@ public class item_catagery extends javax.swing.JDialog {
         txt_update_cat_type.setText(null);
         txt_update_cat_discription.setText(null);
     }//GEN-LAST:event_btn_update_clearActionPerformed
+
+    private void txt_delete_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_delete_typeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_delete_typeActionPerformed
+
+    private void txt_delete_typeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_delete_typeKeyReleased
+        // TODO add your handling code here:
+        fillTableTypeDelete();
+    }//GEN-LAST:event_txt_delete_typeKeyReleased
+
+    private void txt_delete_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_delete_idKeyReleased
+        // TODO add your handling code here:
+        fillTableIDDelete();
+    }//GEN-LAST:event_txt_delete_idKeyReleased
+
+    private void tbl_delete1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_delete1MouseReleased
+        // TODO add your handling code here:
+
+        int row = tbl_delete1.getSelectedRow();
+        txt_delete_cat_id.setText(dtm_delete1.getValueAt(row, 0) + "");
+        txt_delete_cat_type.setText(dtm_delete1.getValueAt(row, 1) + "");
+        txt_delete_cat_discription.setText(dtm_delete1.getValueAt(row, 2) + "");
+    }//GEN-LAST:event_tbl_delete1MouseReleased
+
+    private void txt_delete_typeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_delete_typeKeyPressed
+        // TODO add your handling code here:
+        fillTableTypeDelete();
+    }//GEN-LAST:event_txt_delete_typeKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (txt_delete_cat_id.getText().equals("")) {
+        } else {
+            add_item_category_model add = new add_item_category_model();
+            add.setId(txt_delete_cat_id.getText());
+            Item_category_controler.deleteItemCategory(add);
+            txt_delete_cat_id.setText(null);
+            txt_delete_cat_type.setText(null);
+            txt_delete_cat_discription.setText(null);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        txt_delete_cat_id.setText(null);
+        txt_delete_cat_type.setText(null);
+        txt_delete_cat_discription.setText(null);
+    }//GEN-LAST:event_jButton2ActionPerformed
 //Search
 
     private void fillTableType() {
@@ -682,6 +932,53 @@ public class item_catagery extends javax.swing.JDialog {
 
     }
 
+    //delete
+    private void fillTableTypeDelete() {
+        try {
+            int rawCount = dtm_delete1.getRowCount();
+            for (int i = 0; i < rawCount; i++) {
+                dtm_delete1.removeRow(0);
+            }
+            ArrayList<add_item_category_model> ar = Item_category_controler.getItemCatageryByType(txt_delete_type.getText());
+            for (int i = 0; i < ar.size(); i++) {
+                add_item_category_model it = ar.get(i);
+                String[] rowData = {it.getId(), it.getType(), it.getDescription()};
+                dtm_delete1.addRow(rowData);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
+
+    private void fillTableIDDelete() {
+        try {
+            int rawCount = dtm_delete1.getRowCount();
+            for (int i = 0; i < rawCount; i++) {
+                dtm_delete1.removeRow(0);
+            }
+            ArrayList<add_item_category_model> ar = Item_category_controler.getItemCatageryByID(txt_delete_id.getText());
+            for (int i = 0; i < ar.size(); i++) {
+                add_item_category_model it = ar.get(i);
+                String[] rowData = {it.getId(), it.getType(), it.getDescription()};
+                dtm_delete1.addRow(rowData);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(item_catagery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -732,13 +1029,22 @@ public class item_catagery extends javax.swing.JDialog {
     private javax.swing.JButton btn_update;
     private javax.swing.JButton btn_update_clear;
     private javax.swing.JButton btn_update_home;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -751,15 +1057,25 @@ public class item_catagery extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel tb_add_catagery;
     private javax.swing.JPanel tb_delete_category;
     private javax.swing.JPanel tb_search_catagery;
     private javax.swing.JPanel tb_update_catag;
+    private javax.swing.JTable tbl_delete;
+    private javax.swing.JTable tbl_delete1;
     private javax.swing.JTable tbl_search;
     private javax.swing.JTable tbl_update;
     private javax.swing.JTextField txt_cat_id;
     private javax.swing.JTextField txt_cat_type;
+    private javax.swing.JTextArea txt_delete_cat_discription;
+    private javax.swing.JTextField txt_delete_cat_id;
+    private javax.swing.JTextField txt_delete_cat_type;
+    private javax.swing.JTextField txt_delete_id;
+    private javax.swing.JTextField txt_delete_type;
     private javax.swing.JTextArea txt_discription;
     private javax.swing.JTextField txt_search_type;
     private javax.swing.JTextField txt_serch_id;

@@ -67,13 +67,12 @@ public class Item_category_controler {
         }
         return ar;
     }
-    
-    
-    public static void updateItemCategory(add_item_category_model i) throws ClassNotFoundException, SQLException{
+
+    public static void updateItemCategory(add_item_category_model i) throws ClassNotFoundException, SQLException {
 
         try {
             Connection con = DBConnection.getConnection();
-            String qry = "UPDATE item_catagery set type='" + i.getType() + "',description='" + i.getDescription()+"' where cat_id='" + i.getId() + "'";
+            String qry = "UPDATE item_catagery set type='" + i.getType() + "',description='" + i.getDescription() + "' where cat_id='" + i.getId() + "'";
             int res = DBHandel.setData(con, qry);
             if (res != 0) {
                 JOptionPane.showMessageDialog(null, "Update Category OK");
@@ -81,8 +80,21 @@ public class Item_category_controler {
                 JOptionPane.showMessageDialog(null, "Update Error");
             }
         } catch (Exception e) {
-          
+
             System.out.println(e);
+        }
+    }
+
+    public static void deleteItemCategory(add_item_category_model c) {
+        try {
+            Connection con = DBConnection.getConnection();
+            String query = "DELETE FROM item_catagery   WHERE cat_id='" + c.getId() + "'";
+            int res = DBHandel.setData(con, query);
+            if (res != 0) {
+                JOptionPane.showMessageDialog(null, "Delete category successfuly");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No category to delete");
         }
     }
 }
